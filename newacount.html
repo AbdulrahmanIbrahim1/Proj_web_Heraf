@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/x-icon" href="images/IMG_20231105_202217_434-removebg.png">
+            <link rel="stylesheet" href="CSSFiles/Normalize.css" />
+            <!-- Font Awesome Library -->
+            <link rel="stylesheet" href="CSSFiles/all.min.css" />
+            <!-- Main Template CSS File (stylesheet) -->
+    <link rel="stylesheet" href="CSSFiles/newacount.css">
+    <title>HerafNEW</title>
+</head>
+<body>
+
+        <!-- start header -->
+        <header>
+            <div class="container">
+                <!-- left -->
+                <div class="logo">
+                    <img src="images/IMG_20231105_202217_434-removebg.png" alt="Logo">
+                </div>
+                <i class="fas fa-bars toggle-menu"></i>
+                <div class="links">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#sur">Survices</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </div>
+        </header>
+        <!-- end header -->
+
+
+        <div class="background"></div>
+        <div class="lay"></div>
+
+    <div class="main-box center">
+        <h2>Create new acount </h2>
+        <form action="">
+
+            <label for="fname">First name : </label>
+            <input type="text" id="fname" placeholder="Enter First Name" maxlength="15" autofocus required oninvalid="this.setCustomValidity('error')" oninput="setCustomValidity('')">
+            
+            <label for="lname">Last name : </label>
+            <input type="text" id="lname" placeholder="Enter Last Name" maxlength="15" required >
+            
+            <label for="Countries">Your Country : </label>
+            <input list="Countries" name="Countries">
+            <datalist id="Countries" >
+                <option value="eg">Egypt</option>
+                <option value="uk">Uk</option>
+            </datalist>
+            
+            <label for="Country">Your Country : </label>
+            <select name="Country">
+                <option value="eg">Egypt</option>
+                <option value="uk">Uk</option>
+            </select>
+
+            <label for="Email">Email : </label>
+            <input type="text" id="Email" placeholder="yourmail@gmail.com" maxlength="25" required>
+            
+            <label for="pass">pass : </label>
+            <input type="pass" id="pass" placeholder="assd#dwss_10@dw40" maxlength="25"  minlength="5" required>
+            
+            <label for="cpass">Confirm pass : </label>
+            <input type="pass" id="cpass" placeholder="assd#dwss_10@dw40" maxlength="25" minlength="5"required >
+            
+            <input class="sub" type="submit" value="sign up" >
+            
+            <div class="Error"></div>
+        </form>
+    </div>
+    <script src="JSFILES/newacount.js"></script>
+</body>
+</html>

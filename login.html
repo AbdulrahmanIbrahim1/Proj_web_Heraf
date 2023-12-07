@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/x-icon" href="images/IMG_20231105_202217_434-removebg.png">
+
+  <link rel="stylesheet" href="CSSFiles/Normalize.css" />
+  <!-- Font Awesome Library -->
+  <link rel="stylesheet" href="CSSFiles/all.min.css" />
+  <link rel="stylesheet" href="CSSFiles/login.css">
+  <title>HeraflOGIN</title>
+</head>
+
+<body>
+  <!-- <div class="container">
+
+        <h1>Welcom in our site</h1>
+        <div class="login-box">
+            <form action="/mainPage.html">
+                <h2>Sign in</h2>
+                <label for="Email">Email : </label>
+                <input id="Email" type="text" placeholder="Enter Your E-mail" autofocus autocomplete="com" required> <br>
+                <label for="pass">Pass : </label>
+                <input type="password" placeholder="Enter Your Password " required > <br>
+
+                <input type="submit" value="Login">
+                <p>
+                    OR  <a href="/newacount.html">Create new acount  </a>
+                </p>
+            </form>
+        </div>
+        
+    </div> -->
+
+  <!-- log in  -->
+
+
+  <div class="container">
+    <!-- left -->
+    <div class="sign-in">
+      <div class="logo">
+        <img src="images/IMG_20231105_202217_434-removebg.png" alt="logo">
+      </div>
+      <div class="text center">
+        <h1>Login To Your Account</h1>
+        <p>Login using social networks</p>
+        <div class="links">
+          <div class="face"><a href="#"><i class="fa-brands fa-facebook-f"></i> </a></div>
+          <div class="google active"><a href="#"><i class="fa-brands fa-google-plus-g"></i></a></div>
+          <div class="linked"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></div>
+        </div>
+      </div>
+      <form action="">
+        <input type="email" id="email" placeholder="Email" required
+          title="Enter your Email EXample : Heraf123@gmail.com"><br>
+        <input type="password" id="pass" placeholder="Password" title="Enter your password"><br>
+        <input type="submit" id="sub" value="Sign In">
+        <i class="fa-solid fa-eye" style="cursor:pointer;"></i>
+      </form>
+    </div>
+
+    <!-- right -->
+    <div class="sign-up">
+      <div class="lay"></div>
+      <div class="text center">
+        <h1>New Here ?</h1>
+        <p>Sign up and discover a great amount of new opportunities</p>
+        <button>Sign Up</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- start Java Script -->
+  <script>
+    //start to show pass
+    let pass = document.getElementById("pass");
+    let iconShow = document.getElementsByClassName("fa-solid fa-eye")[0]
+    iconShow.onclick = () => {
+      if (pass.type === "password") {
+        pass.type = "text";
+        setTimeout(() => { pass.type = "password" }, 3000)
+      }
+      else {
+        pass.type = "password";
+      }
+    }
+    //end to show pass
+    let form = document.getElementsByTagName("form")[0];
+    console.log(form)
+    form.onsubmit = (e) => {
+      location.href = "home.html";
+    }
+
+
+    let btn = document.getElementsByTagName("button")[0]
+    //console.log(btn)
+    btn.onclick = function () {
+      location.href = "newacount.html"
+    }
+
+  </script>
+  <!-- End Java Script -->
+</body>
+
+</html>
