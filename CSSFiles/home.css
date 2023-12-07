@@ -169,7 +169,7 @@ header .container .links i {
 header+section {
     min-height: 100vh;
     background-color: #1f2021;
-    background-image: url("/images/adult-1866533.jpg");
+    background-image: url("../images/adult-1866533.jpg");
     background-size: cover;
     position: relative;
     color: var(--mainColor);
