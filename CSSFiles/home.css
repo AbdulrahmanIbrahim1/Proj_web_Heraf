@@ -71,7 +71,8 @@ header {
     left: 0;
     width: 100%;
     z-index: 2;
-
+    /* background-color: #1b1b1bc7; */
+    background-color: #00000075;
 }
 
 
@@ -79,7 +80,7 @@ header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #1b1b1bc7;
+    /* background-color: #1b1b1bc7;/ */
     margin-top: 1px;
     position: relative;
     max-height: 75px;
