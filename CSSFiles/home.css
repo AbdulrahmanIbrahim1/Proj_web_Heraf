@@ -73,6 +73,7 @@ header {
     z-index: 2;
     /* background-color: #1b1b1bc7; */
     background-color: #00000075;
+    color: var(--mainColor);
 }
 
 
