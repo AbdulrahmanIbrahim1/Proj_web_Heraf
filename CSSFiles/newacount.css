@@ -206,6 +206,7 @@ header .container .links i {
     background-color: #000000c4;
     color: var(--mainColor);
     width: 100%;
+    min-height: 30px;
 }
 
 .main-box form label {

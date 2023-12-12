@@ -45,20 +45,28 @@
             <label for="fname">First name : </label>
             <input type="text" id="fname" placeholder="Enter First Name" maxlength="15" autofocus required oninvalid="this.setCustomValidity('error')" oninput="setCustomValidity('')">
             
+            <label for="photo">Your Profile Photo : </label>
+            <input type="file" name="photo" id="photo">
+
             <label for="lname">Last name : </label>
             <input type="text" id="lname" placeholder="Enter Last Name" maxlength="15" required >
             
-            <label for="Countries">Your Country : </label>
-            <input list="Countries" name="Countries">
-            <datalist id="Countries" >
-                <option value="eg">Egypt</option>
-                <option value="uk">Uk</option>
-            </datalist>
+            <label for="governorate">Governorate </label>
+            <select name="governorate">
+                <option value="eg">Qalyubia</option>
+                <option value="uk">Cairo</option>
+            </select>
+            
             
             <label for="Country">Your Country : </label>
             <select name="Country">
-                <option value="eg">Egypt</option>
-                <option value="uk">Uk</option>
+                <optgroup label="Qalyubia">
+                    <option value="shoubra">shoubra</option>
+                    <option value="benha">benha</option>
+                <optgroup label="Cairo">
+                    <option value="shoubra-m">shoubra masr</option>
+                    <option value="October">6 October</option>
+                </optgroup>
             </select>
 
             <label for="Email">Email : </label>
