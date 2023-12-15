@@ -131,14 +131,93 @@ Voluptatibus</p>
           </div>
         </div>
         <!-- end card -->
+
+
+        <div class="lay addlay"></div>
+        <form class="addForm">
+          <label for="photoProj">image of new project : </label>
+          <input type="file" name="photoProj" required>
+
+          <label for="projName">Name of your new project : </label>
+          <input type="text" name="projName" required>
+
+          <label for="info">information of your new project :</label>
+          <textarea id="info" name="infoproj" rows="4" cols="50" required></textarea>
+
+          <input type="submit" class="sub" value="add my new project" >
+        </form>
+
+        <div class="add">
+          <p>Add new project</p>
+          <i class="fa-solid fa-plus"></i>
+        </div>
+
+        
       </div>
     </div>
+    <!-- script to add new project -->
+    <script>
+      let projects = document.getElementsByClassName("projects")[0];
+      let addform =document.getElementsByClassName("addForm")[0];
+      let lay = document.getElementsByClassName("addlay")[0];
+      let projImge = document.querySelector('[name="photoProj"]');
+      let projName= document.querySelector('[name="projName"]');
+      let projInfo = document.querySelector('[name="infoproj"]');
+      let sub = document.querySelector('[class="sub"]');
+
+      let add= document.getElementsByClassName("fa-plus")[0];
+      add.onclick = function(){
+        lay.style.display ="block";
+        addform.style.display="grid";
+      }
+
+      lay.onclick = ()=>{
+        lay.style.display = "none";
+        addform.style.display = "none";
+      }
+      
+      addform.onsubmit= (e)=>{
+        e.preventDefault();
+        lay.style.display = "none";
+        addform.style.display = "none";
+        //create new card
+        let card = document.createElement("div")
+        card.className="card";
+        //create left
+        let left =document.createElement("div")
+        let imgProj = document.createElement("div")
+        imgProj.className="img-proj";
+        let img = document.createElement("img")
+        img.src=projImge.value;
+        //append left
+        imgProj.appendChild(img);
+        left.appendChild(imgProj);
+        card.appendChild(left)
+
+        //create right
+        let right = document.createElement("div")
+        right.className="right";
+        //create h4
+        let h4=document.createElement("h4");
+        h4.innerHTML= projName.value;
+        //create p
+        let p=document.createElement("p");
+        p.innerHTML=projInfo.value;
+        //append right
+        right.appendChild(h4)
+        right.appendChild(p)
+        card.appendChild(right)
+        //add to container to page
+        projects.lastElementChild.prepend(card);
+      }
+
+    </script>
     <!-- end section 2 -->
 
     <!-- start comments -->
     <div class="comments">
       <h2>Ratings : </h2>
-      <div class="container">
+      <div class="container contComnt">
 
         <!-- card -->
         <div class="card">
@@ -164,9 +243,89 @@ Voluptatibus</p>
             Voluptatibus</p>
           </div>
         </div>
+        <!-- ======== -->
+      <div class="card">
+        <div class="person">
+          <img src="images/skills-02.jpg" alt="">
+          <div class="name">Omar Elsayed</div>
+        </div>
+        <div class="cmnt">
+          <textarea cols="30" rows="10" placeholder="Write your comment here" style="min-width: 260px; height: 66px;"></textarea>
+          <button class="addcmnt">add comment</button>
+          <p class="mycmnt"></p>
+        </div>
+      </div>
         <!-- ==== -->
       </div>
+      <div class="add">
+        <p>Add new comment</p>
+        <i class="fa-solid fa-plus addmycmnt"></i>
       </div>
+    </div>
+    <!-- script to add new comment -->
+    <script>
+      
+      let cmnt = document.querySelector('[placeholder="Write your comment here"]');
+      let subcmnt = document.querySelector('[class="addcmnt"]');
+      subcmnt.onclick = comment;
+      
+      function comment() {
+        let mycmnt = document.querySelector('[class="mycmnt"]')
+      mycmnt.innerHTML = cmnt.value;
+      cmnt.style.display = "none"
+      subcmnt.style.display = "none"
+    }
+    //=============
+      let comments = document.querySelector('[class="container contComnt"]')
+
+        let addnew= document.querySelector('[class="fa-solid fa-plus addmycmnt"]');
+        addnew.onclick=()=>{
+          let card =document.createElement("div")
+          card.className="card";
+          let person=document.createElement("div")
+          person.className="person";
+          let img=document.createElement("img");
+          img.src="images/skills-02.jpg"
+          img.alt="";
+          // ناقص السورس هيبقي من الداتا بيز و الاسم 
+          let name=document.createElement("div")
+          name.className="name";
+          name.innerHTML="abdo"
+          
+          person.appendChild(img)
+          person.appendChild(name)
+          card.appendChild(person)
+          
+          let com=document.createElement("div")
+          com.className="cmnt";
+          let textarea=document.createElement("textarea")
+          textarea.cols="30"
+          textarea.rows = "10"
+          textarea.placeholder="Write your comment here"
+          textarea.style = "min-width: 260px height: 66px;";
+          let btn=document.createElement("button");
+          btn.className="addcmnt";
+          btn.innerHTML="add comment";
+          let p= document.createElement("p");
+          p.className="mycmnt";
+
+          com.appendChild(textarea);
+          com.appendChild(btn);
+          com.appendChild(p);
+          
+          card.appendChild(com)
+          
+          comments.append(card)
+          
+          
+          btn.onclick= function(){
+            p.innerHTML=textarea.value
+            textarea.style.display="none"
+            btn.style.display="none"
+          }
+        }
+        //========
+      </script>
       <!-- end comments -->
       
       <!-- start footer  -->

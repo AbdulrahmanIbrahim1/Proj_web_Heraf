@@ -45,11 +45,11 @@
             <label for="fname">First name : </label>
             <input type="text" id="fname" placeholder="Enter First Name" maxlength="15" autofocus required oninvalid="this.setCustomValidity('error')" oninput="setCustomValidity('')">
             
-            <label for="photo">Your Profile Photo : </label>
-            <input type="file" name="photo" id="photo">
-
             <label for="lname">Last name : </label>
             <input type="text" id="lname" placeholder="Enter Last Name" maxlength="15" required >
+            
+            <label for="photo">Your Profile Photo : </label>
+            <input type="file" name="photo" id="photo">
             
             <label for="governorate">Governorate </label>
             <select name="governorate">
@@ -69,6 +69,38 @@
                 </optgroup>
             </select>
 
+            <label for="ifemp">Are you an employee?</label>
+            <select name="ifemp" id="ifemp">
+                <option value="yes">Yes</option>
+                <option value="no" selected>No</option>
+            </select>
+
+            
+            <label for="jobInfo" class="jobInfo" style="display: none;">your job : </label>
+            <input type="text" name="jobInfo" id="jobInfo" class="jobInfo" style="display: none;">
+
+            <script> 
+                //script to check if emp or client
+                let ifemp=document.getElementById("ifemp");
+                ifemp.onchange = function(){
+                    if(ifemp.value=="yes"){
+                        console.log("00000000");
+                        let jobInfo = document.querySelectorAll('[class="jobInfo"]');
+                        console.log(jobInfo)
+                        jobInfo[0].style.display = "block";
+                        jobInfo[1].style.display = "block";
+                        
+                    }
+                    else{
+                        let jobInfo = document.querySelectorAll('[class="jobInfo"]');
+                        jobInfo[0].style.display = "none";
+                        jobInfo[1].style.display = "none";
+                        
+                    }
+                }
+            </script>
+
+
             <label for="Email">Email : </label>
             <input type="text" id="Email" placeholder="yourmail@gmail.com" maxlength="25" required>
             
@@ -86,3 +118,4 @@
     <script src="JSFILES/newacount.js"></script>
 </body>
 </html>
+
