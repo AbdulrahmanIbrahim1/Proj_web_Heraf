@@ -46,18 +46,55 @@
           <p>Hi there</p>
           <h3>Abdelrahman Ibrahim</h3>
           <p>web developer
-            <ul>
-              <li>html</li>
+            <ul class="ulSkill">
+              <!-- <li>html</li>
               <li>CSS</li>
               <li>javascript</li>
               <li>javascript</li>
               <li>bootstrap</li>
               <li>php</li>
-              <li>laravel</li>
+              <li>laravel</li> -->
             </ul>
+            <button class="btn-skill">
+              Add skill 
+            </button>
+            <div class="Newskill" style="display: none;">
+              <label for="Nskill"  >Write your skill : </label>
+              <input type="text" name="Nskill" id="Nskill" class="Nskill"  >
+              <button add="add">Add</button>
+            </div>
+            <!-- script to add new skill -->
+            <script>
+              let btnSkill=document.getElementsByClassName("btn-skill")[0]
+              let Newskill=document.querySelector('[class="Newskill"]')
+              console.log(Newskill)
+              btnSkill.onclick=()=>{
+                lay.style.display="block";
+                Newskill.style.display="block"
+              }
+              let btnAddSkill = document.querySelector('[add="add"]')
+              let inputSkill=document.querySelector('[id="Nskill"]')
+              btnAddSkill.onclick= ()=>{
+                if(!inputSkill.value==""){
+                  let ul = document.querySelector('[class="ulSkill"]')
+                  let liValue=document.createElement("li")
+                  liValue.innerHTML=inputSkill.value
+                  ul.appendChild(liValue)
+                  lay.style.display="none";
+                  Newskill.style.display="none"
+                }
+                else{
+                  //window.alert("add skill")
+                  lay.style.display="none";
+                  Newskill.style.display="none"
+                }
+              }
+            </script>
+            <br>
 - Lorem ipsum dolor sit amet consectetur adipisicing elit.
 Quidem modi necessitatibus laborum molestias?
 Voluptatibus</p>
+            <p><span>My phone : </span>01091532721</p>
             <p>Total Reviews :</p>
             <i class="fa-solid fa-star one"></i>
             <i class="fa-solid fa-star two"></i>
@@ -174,6 +211,8 @@ Voluptatibus</p>
       lay.onclick = ()=>{
         lay.style.display = "none";
         addform.style.display = "none";
+//new skill
+        Newskill.style.display = "none"
       }
       
       addform.onsubmit= (e)=>{
@@ -213,55 +252,79 @@ Voluptatibus</p>
 
     </script>
     <!-- end section 2 -->
-
+    
     <!-- start comments -->
     <div class="comments">
       <h2>Ratings : </h2>
       <div class="container contComnt">
-
-        <!-- card -->
-        <div class="card">
+        
+          <!-- card -->
+        <!-- <div class="card">
           <div class="person">
             <img src="images/skills-01.jpg" alt="">
             <div class="name">Mohamed Ahmed</div>
           </div>
           <div class="cmnt">
+            <div class="rating">
+              <i class="fa-solid fa-star star" onclick="rate(1)" onmouseover="highlight(1)" onmouseout="resetStars()"></i>
+              <i class="fa-solid fa-star star" onclick="rate(2)" onmouseover="highlight(2)" onmouseout="resetStars()"></i>
+              <i class="fa-solid fa-star star" onclick="rate(3)" onmouseover="highlight(3)" onmouseout="resetStars()"></i>
+              <i class="fa-solid fa-star star" onclick="rate(4)" onmouseover="highlight(4)" onmouseout="resetStars()"></i>
+              <i class="fa-solid fa-star star" onclick="rate(5)" onmouseover="highlight(5)" onmouseout="resetStars()"></i>
+            </div>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Quidem modi necessitatibus laborum molestias?
               Voluptatibus</p>
             </div>
-          </div>
+          </div> -->
           <!-- ==== -->
-      <div class="card">
+      <!-- <div class="card">
         <div class="person">
           <img src="images/skills-02.jpg" alt="">
           <div class="name">Omar Elsayed</div>
+          
         </div>
         <div class="cmnt">
+          <div class="rating">
+            <i class="fa-solid fa-star star" onclick="rate(1)" onmouseover="highlight(1)" onmouseout="resetStars()"></i>
+            <i class="fa-solid fa-star star" onclick="rate(2)" onmouseover="highlight(2)" onmouseout="resetStars()"></i>
+            <i class="fa-solid fa-star star" onclick="rate(3)" onmouseover="highlight(3)" onmouseout="resetStars()"></i>
+            <i class="fa-solid fa-star star" onclick="rate(4)" onmouseover="highlight(4)" onmouseout="resetStars()"></i>
+            <i class="fa-solid fa-star star" onclick="rate(5)" onmouseover="highlight(5)" onmouseout="resetStars()"></i>
+          </div>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Quidem modi necessitatibus laborum molestias?
             Voluptatibus</p>
           </div>
-        </div>
+        </div> -->
         <!-- ======== -->
-      <div class="card">
-        <div class="person">
+        <div class="card">
+          <div class="person">
           <img src="images/skills-02.jpg" alt="">
           <div class="name">Omar Elsayed</div>
+          
         </div>
         <div class="cmnt">
           <textarea cols="30" rows="10" placeholder="Write your comment here" style="min-width: 260px; height: 66px;"></textarea>
           <button class="addcmnt">add comment</button>
+          <div class="rating not">
+            <i class="fa-solid fa-star star" onclick="rate(1)" onmouseover="highlight(1)" onmouseout="resetStars()"></i>
+            <i class="fa-solid fa-star star" onclick="rate(2)" onmouseover="highlight(2)" onmouseout="resetStars()"></i>
+            <i class="fa-solid fa-star star" onclick="rate(3)" onmouseover="highlight(3)" onmouseout="resetStars()"></i>
+            <i class="fa-solid fa-star star" onclick="rate(4)" onmouseover="highlight(4)" onmouseout="resetStars()"></i>
+            <i class="fa-solid fa-star star" onclick="rate(5)" onmouseover="highlight(5)" onmouseout="resetStars()"></i>
+          </div>
           <p class="mycmnt"></p>
+          
         </div>
       </div>
         <!-- ==== -->
-      </div>
-      <div class="add">
-        <p>Add new comment</p>
-        <i class="fa-solid fa-plus addmycmnt"></i>
-      </div>
     </div>
+    <div class="add">
+      <p>Add new comment</p>
+      <i class="fa-solid fa-plus addmycmnt"></i>
+    </div>
+  </div>
     <!-- script to add new comment -->
     <script>
       
@@ -274,6 +337,9 @@ Voluptatibus</p>
       mycmnt.innerHTML = cmnt.value;
       cmnt.style.display = "none"
       subcmnt.style.display = "none"
+      //for ratings
+      removeNot()
+      removeAtrr()
     }
     //=============
       let comments = document.querySelector('[class="container contComnt"]')
@@ -309,8 +375,25 @@ Voluptatibus</p>
           let p= document.createElement("p");
           p.className="mycmnt";
 
+          let NewDivRate=document.createElement("div")
+          NewDivRate.className="rating not"
+          let NewStar=[];
+          for(let i=0 ;i<5;i++){
+            NewStar[i]=document.createElement("i");
+            NewStar[i].className="fa-solid fa-star star";
+            NewStar[i].setAttribute("onclick", `rate(${i+1})`)
+            NewStar[i].setAttribute("onmouseover", `highlight(${i+1})`)
+            NewStar[i].setAttribute("onmouseout", "resetStars()")
+          }
+          
+          for(let i=0;i<5;i++){
+            NewDivRate.appendChild(NewStar[i]);
+          }
+
+
           com.appendChild(textarea);
           com.appendChild(btn);
+          com.appendChild(NewDivRate)
           com.appendChild(p);
           
           card.appendChild(com)
@@ -322,9 +405,80 @@ Voluptatibus</p>
             p.innerHTML=textarea.value
             textarea.style.display="none"
             btn.style.display="none"
+            //
+            removeNot()
+            removeAtrr()
+            CountAveRating()
           }
+          CountAveRating()
         }
         //========
+        //script for ratings
+        let rats=document.querySelector('[class="rating not"]')
+        
+        let selectedRating = 0;
+
+        function highlight(starNumber) {
+          for (let i = 1; i <= starNumber; i++) {
+            document.querySelector(`.rating.not .star:nth-child(${i})`).style.color = 'red';
+              }
+        }
+
+        function resetStars() {
+          for (let i = 1; i <= 5; i++) {
+            document.querySelector(`.rating.not .star:nth-child(${i})`).style.color = (i <= selectedRating) ? 'var(--mainColor)' : 'black';
+          }
+        }
+
+        function rate(rating) {
+          selectedRating = rating;
+          resetStars();
+          console.log(`Rated: ${rating} stars`);
+
+        }
+
+        function removeAtrr(){
+          let star = document.querySelectorAll(".star")
+          for(let i=0;i<star.length;i++){
+            if(!star[i].parentElement.classList.contains("not")){
+            star[i].removeAttribute("onclick")
+            star[i].removeAttribute("onmouseover");
+            star[i].removeAttribute("onmouseout");
+          }
+        }
+      }
+        removeAtrr() 
+
+        function removeNot(){
+          let star = document.querySelectorAll(".star")
+          for (let i = 0; i < star.length; i++) {
+            if (star[i].parentElement.classList.contains("not")) {
+              star[i].parentElement.classList.remove("not")
+            }
+          }
+        }
+
+
+        function CountAveRating(){
+          let star = document.querySelectorAll(".star")
+          let CountOf5 = 0
+          let CountOfColor=0
+          for (let i = 0; i < star.length; i++) {
+            if(i%5==0){
+              CountOf5++
+            }
+            if(star[i].style.color=="var(--mainColor)"){
+              CountOfColor++;
+            }
+          }
+          console.log(`count of stars has color: ${CountOfColor}`)
+          console.log(`count of group stars : ${CountOf5}`)
+
+          let average=CountOfColor/CountOf5;
+          console.log(`Average of ratings : ${average}`)
+          console.log(`##################################`)
+        }
+        CountAveRating()
       </script>
       <!-- end comments -->
       

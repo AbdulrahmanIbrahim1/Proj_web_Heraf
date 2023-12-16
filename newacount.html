@@ -69,8 +69,11 @@
                 </optgroup>
             </select>
 
+            <label for="num">Your phone number</label>
+            <input type="tel" name="" id="num" placeholder="01091532721" maxlength="11">
+            
             <label for="ifemp">Are you an employee?</label>
-            <select name="ifemp" id="ifemp">
+            <select name="ifemp" id="ifemp" required    >
                 <option value="yes">Yes</option>
                 <option value="no" selected>No</option>
             </select>
@@ -79,6 +82,9 @@
             <label for="jobInfo" class="jobInfo" style="display: none;">your job : </label>
             <input type="text" name="jobInfo" id="jobInfo" class="jobInfo" style="display: none;">
 
+            <label for="aboutyou" class="aboutwork" style="display: none;">About You</label>
+            <input type="text" name="aboutyou" class="aboutwork" id="aboutyou" placeholder="Write about your work here" style="display: none;" >
+            
             <script> 
                 //script to check if emp or client
                 let ifemp=document.getElementById("ifemp");
@@ -86,15 +92,24 @@
                     if(ifemp.value=="yes"){
                         console.log("00000000");
                         let jobInfo = document.querySelectorAll('[class="jobInfo"]');
-                        console.log(jobInfo)
+                        
                         jobInfo[0].style.display = "block";
                         jobInfo[1].style.display = "block";
+                        jobInfo[1].setAttribute("required" , "");
+
+                        let About = document.querySelectorAll('[class="aboutwork"]')
+                        About[0].style.display = "block";
+                        About[1].style.display = "block";
                         
                     }
                     else{
                         let jobInfo = document.querySelectorAll('[class="jobInfo"]');
                         jobInfo[0].style.display = "none";
                         jobInfo[1].style.display = "none";
+                        
+                        let About = document.querySelectorAll('[class="aboutwork"]')
+                        About[0].style.display = "none";
+                        About[1].style.display = "none";
                         
                     }
                 }
