@@ -37,6 +37,7 @@
     </div>
   </header>
   <!-- end header -->
+  
   <!-- start section 1  -->
   <section>
     <div class="lay"></div>
@@ -49,10 +50,17 @@
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="search" class="center"
           placeholder="   electrician ,Computer engineer ,Mechanical ,carpenter,Broker,............................................ ">
-        <button>Search</button>
+        <button BtnSearch="BtnSearch" >Search</button>
       </div>
     </div>
   </section>
+  <script>
+    let BtnSearch=document.querySelector('[BtnSearch]')
+    console.log(BtnSearch);
+    BtnSearch.onclick=()=>{
+      window.location.href="search.html"
+    }
+  </script>
   <!-- end section 1  -->
 
   <!-- start section 2 -->
@@ -62,7 +70,7 @@
       <div class="content">
         <!-- =================================================================== -->
         <div class="card">
-          <img src="images/carpenter-4015109.jpg" alt="Carpenters Department">
+          <img jobs="jobs" src="images/carpenter-4015109.jpg" alt="Carpenters Department">
           <div class="info">
             <h3>Carpenters Department</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -72,7 +80,7 @@
         </div>
         <!-- =================================================================== -->
         <div class="card">
-          <img src="images/man-362150.jpg" alt="Mechanical Department">
+          <img jobs="jobs" src="images/man-362150.jpg" alt="Mechanical Department">
           <div class="info">
             <h3>Mechanical Department</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -82,7 +90,7 @@
         </div>
         <!-- =================================================================== -->
         <div class="card">
-          <img src="images/electrician-2755683.jpg" alt="Electricians Department">
+          <img jobs="jobs" src="images/electrician-2755683.jpg" alt="Electricians Department">
           <div class="info">
             <h3>Electricians Department</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -92,7 +100,7 @@
         </div>
         <!-- =================================================================== -->
         <div class="card">
-          <img src="images/pexels-tima-miroshnichenko-5846143.jpg" alt="Electricians Department">
+          <img jobs="jobs" src="images/pexels-tima-miroshnichenko-5846143.jpg" alt="Electricians Department">
           <div class="info">
             <h3>blacksmith</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -103,7 +111,7 @@
         <!-- =================================================================== -->
 
         <div class="card">
-          <img src="images/pexels-blue-bird-7218525.jpg" alt="Electricians Department">
+          <img jobs="jobs" src="images/pexels-blue-bird-7218525.jpg" alt="Electricians Department">
           <div class="info">
             <h3>painter</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -159,5 +167,30 @@
   </footer>
   <!-- end footer  -->
 </body>
+
+  <!-- script for click on fas fa-bars toggle-menu in phone screen  -->
+  <script>
+    let BtnList = document.getElementsByClassName("fas fa-bars toggle-menu")[0]
+    let links = document.querySelector('[class="links"]')
+
+
+    window.addEventListener("resize", function () {
+      if (window.innerHeight <= 768) {
+        links.style.display = "none"
+        BtnList.onclick = () => {
+          links.style.cssText = "display: flex; flex-direction: column; position:absolute; top:100%; left:0; width: 100%;background-color: #00000075; "
+        }
+        links.onmouseleave = () => {
+          links.style.display = "none"
+        }
+      }
+      if (window.innerWidth > 768) {
+        links.style.cssText = "display: flex; position: relative; "
+        links.onmouseleave = () => {
+          links.style.display = "display: flex; position: relative; "
+        }
+      }
+    })
+</script>
 
 </html>
