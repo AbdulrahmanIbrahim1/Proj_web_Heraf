@@ -50,15 +50,15 @@
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="search" class="center"
           placeholder="   electrician ,Computer engineer ,Mechanical ,carpenter,Broker,............................................ ">
-        <button BtnSearch="BtnSearch" >Search</button>
+        <button BtnSearch>Search</button>
       </div>
     </div>
   </section>
   <script>
-    let BtnSearch=document.querySelector('[BtnSearch]')
-    console.log(BtnSearch);
-    BtnSearch.onclick=()=>{
-      window.location.href="search.html"
+    let BtnSearch = document.querySelector('[BtnSearch]')
+    console.log(BtnSearch)
+    BtnSearch.onclick = () => {
+      window.location.href = "search.html"
     }
   </script>
   <!-- end section 1  -->
@@ -168,29 +168,40 @@
   <!-- end footer  -->
 </body>
 
-  <!-- script for click on fas fa-bars toggle-menu in phone screen  -->
-  <script>
-    let BtnList = document.getElementsByClassName("fas fa-bars toggle-menu")[0]
-    let links = document.querySelector('[class="links"]')
+<!-- script for click on fas fa-bars toggle-menu in phone screen  -->
+<!-- script for click on fas fa-bars toggle-menu in phone screen  -->
+<script>
+  let BtnList = document.getElementsByClassName("fas fa-bars toggle-menu")[0]
+  let links = document.querySelector('[class="links"]')
 
 
-    window.addEventListener("resize", function () {
-      if (window.innerHeight <= 768) {
+  window.addEventListener("resize", function () {
+    if (window.innerHeight <= 768) {
+      links.style.display = "none"
+      BtnList.onclick = () => {
+        links.style.cssText = "display: flex; flex-direction: column; position:absolute; top:100%; left:0; width: 100%;background-color: #00000075; "
+      }
+      links.onmouseleave = () => {
         links.style.display = "none"
-        BtnList.onclick = () => {
-          links.style.cssText = "display: flex; flex-direction: column; position:absolute; top:100%; left:0; width: 100%;background-color: #00000075; "
-        }
-        links.onmouseleave = () => {
-          links.style.display = "none"
-        }
       }
-      if (window.innerWidth > 768) {
-        links.style.cssText = "display: flex; position: relative; "
-        links.onmouseleave = () => {
-          links.style.display = "display: flex; position: relative; "
-        }
+    }
+    if (window.innerWidth > 768) {
+      links.style.cssText = "display: flex; position: relative; "
+      links.onmouseleave = () => {
+        links.style.display = "display: flex; position: relative; "
       }
-    })
+    }
+  })
+
+  //click on card of job
+  let card=document.querySelectorAll('[jobs="jobs"]')
+for (let i = 0; i < card.length; i++) {
+  card[i].onclick=()=>{
+    
+    window.location.href="search.html"}
+  }
+
+
 </script>
 
 </html>
