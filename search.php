@@ -14,6 +14,21 @@
   <!-- Main Template CSS File (stylesheet) -->
   <link rel="stylesheet" href="CSSFiles/search.css">
   <title>Heraf / search</title>
+  <style>
+	.Card-acount {
+		position: relative;
+	}
+	.button {
+		width: 100%;
+		height: 100%;
+		background-color: transparent;
+		/* border: none; */
+		border-radius: 30px;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+  </style>
 </head>
 
 <body>
@@ -31,7 +46,7 @@
           <li><a href="index.php#sur">Survices</a></li>
           <li><a href="#about">About</a></li>
         </ul>
-        <a href="login.php">
+        <a href="<?php if (session_status() == PHP_SESSION_NONE) {session_start();} if (isset($_SESSION['user'])){echo "profile.php";} else {echo "login.php";} ?>">
           <i class="fa-solid fa-user"></i>
         </a>
       </div>
@@ -62,7 +77,10 @@
       <!-- card of account -->
       <?php
 	  for ($i = 0; $i < sizeof($heraf); $i++) {
-	  echo "<div class=\"Card-acount\">
+		if ( isset($emp1) and $heraf[$i]['id'] == $emp1['id']) {
+			continue;
+		}
+	  echo "<div class=\"Card-acount\" index=$i>
         <div class=\"left\">
           <img src=\"images/" . $heraf[$i]['photo'] . "\" alt=\"account photo\">
         </div>
@@ -70,6 +88,10 @@
           <h2>" . $heraf[$i]['first_name']. " " . $heraf[$i]['last_name'] . "</h2>
           <p>" . $heraf[$i]['elherfa'] . "<br>" . $heraf[$i]['country'] . ":  " . $heraf[$i]['governorate'] . "</p>
         </div>
+		<form action=\"employ.php\" method=\"post\">
+			<input type=\"text\" id=\"inputData\" name=\"name\" value=$i style=\"display: None\">
+			<button class=\"button\" type=\"submit\" ></button>
+		</form>
       </div>
       <hr>";} ?>
       <!-- end of card  -->
@@ -140,11 +162,23 @@
       }
     })
 	//onclick on account 
-    let account = document.querySelectorAll('[class="Card-acount"]')
-      for(let i=0;account.length;i++){
-        account[i].onclick=()=>{
-        window.location.href="employ.php";
-      }
-    }
+    // let account = document.querySelectorAll('[class="Card-acount"]')
+    //   for(let i=0;account.length;i++){
+    //     account[i].onclick=()=>{
+	// 		// fetch("employ.php", {
+	// 		// 	"method": "POST",
+	// 		// 	"headers": {
+	// 		// 		"Content-Type": "application/x-www-form-urlencoded"
+	// 		// 	},
+	// 		// 	"body": 'number=' + encodeURIComponent(account[i].getAttribute('index'))
+	// 		// }).then(function(response){
+	// 		// 	return response.text();
+	// 		// }).then(function(data){
+	// 		// 	console.log(parseInt(data.match(/\d+/)[0], 10));
+	// 		// })
+    //     window.location.href="employ.php";
+	// 	// console.log(account[i].getAttribute('index'));
+    //   }
+    // }
   </script>
 </html>

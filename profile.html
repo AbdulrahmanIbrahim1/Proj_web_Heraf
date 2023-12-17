@@ -544,3 +544,212 @@ Voluptatibus</p>
   })
   </script> 
   </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+      
+	let cmnt = document.querySelector('[placeholder="Write your comment here"]');
+	let subcmnt = document.querySelector('[class="addcmnt"]');
+	subcmnt.onclick = comment;
+	
+	function comment() {
+	  let mycmnt = document.querySelector('[class="mycmnt"]')
+	mycmnt.innerHTML = cmnt.value;
+	cmnt.style.display = "none"
+	subcmnt.style.display = "none"
+	//for ratings
+	removeNot()
+	removeAtrr()
+  }
+  //=============
+	let comments = document.querySelector('[class="container contComnt"]')
+
+	  let addnew= document.querySelector('[class="fa-solid fa-plus addmycmnt"]');
+	  addnew.onclick=()=>{
+		let card =document.createElement("div")
+		card.className="card";
+		let person=document.createElement("div")
+		person.className="person";
+		let img=document.createElement("img");
+		img.src="images/<?php echo $emp1['photo'] ?>"
+		img.alt="";
+		// ناقص السورس هيبقي من الداتا بيز و الاسم 
+		let name=document.createElement("div")
+		name.className="name";
+		name.innerHTML="<?php echo $emp1['first_name'] . " " . $emp1['last_name']?>"
+		
+		person.appendChild(img)
+		person.appendChild(name)
+		card.appendChild(person)
+		
+		let com=document.createElement("div")
+		com.className="cmnt";
+		let textarea=document.createElement("textarea")
+		textarea.cols="30"
+		textarea.rows = "10"
+		textarea.placeholder="Write your comment here"
+		textarea.style = "min-width: 260px height: 66px;";
+		let btn=document.createElement("button");
+		btn.className="addcmnt";
+		btn.innerHTML="add comment";
+		let p= document.createElement("p");
+		p.className="mycmnt";
+
+		let NewDivRate=document.createElement("div")
+		NewDivRate.className="rating not"
+		let NewStar=[];
+		for(let i=0 ;i<5;i++){
+		  NewStar[i]=document.createElement("i");
+		  NewStar[i].className="fa-solid fa-star star";
+		  NewStar[i].setAttribute("onclick", `rate(${i+1})`)
+		  NewStar[i].setAttribute("onmouseover", `highlight(${i+1})`)
+		  NewStar[i].setAttribute("onmouseout", "resetStars()")
+		}
+		
+		for(let i=0;i<5;i++){
+		  NewDivRate.appendChild(NewStar[i]);
+		}
+
+
+		com.appendChild(textarea);
+		com.appendChild(btn);
+		com.appendChild(NewDivRate)
+		com.appendChild(p);
+		
+		card.appendChild(com)
+		
+		comments.append(card)
+		
+		
+		btn.onclick= function(){
+		  p.innerHTML=textarea.value
+		  textarea.style.display="none"
+		  btn.style.display="none"
+		  //
+		  removeNot()
+		  removeAtrr()
+		  CountAveRating()
+		}
+		CountAveRating()
+	  }
+	  //========
+	  //script for ratings
+	  let rats=document.querySelector('[class="rating not"]')
+	  
+	  let selectedRating = 0;
+
+	  function highlight(starNumber) {
+		for (let i = 1; i <= starNumber; i++) {
+		  document.querySelector(`.rating.not .star:nth-child(${i})`).style.color = 'red';
+			}
+	  }
+
+	  function resetStars() {
+		for (let i = 1; i <= 5; i++) {
+		  document.querySelector(`.rating.not .star:nth-child(${i})`).style.color = (i <= selectedRating) ? 'var(--mainColor)' : 'black';
+		}
+	  }
+
+	  function rate(rating) {
+		selectedRating = rating;
+		resetStars();
+		console.log(`Rated: ${rating} stars`);
+
+	  }
+
+	  function removeAtrr(){
+		let star = document.querySelectorAll(".star")
+		for(let i=0;i<star.length;i++){
+		  if(!star[i].parentElement.classList.contains("not")){
+		  star[i].removeAttribute("onclick")
+		  star[i].removeAttribute("onmouseover");
+		  star[i].removeAttribute("onmouseout");
+		}
+	  }
+	}
+	  removeAtrr() 
+
+	  function removeNot(){
+		let star = document.querySelectorAll(".star")
+		for (let i = 0; i < star.length; i++) {
+		  if (star[i].parentElement.classList.contains("not")) {
+			star[i].parentElement.classList.remove("not")
+		  }
+		}
+	  }
+
+
+	  function CountAveRating(){
+		let star = document.querySelectorAll(".star")
+		let CountOf5 = 0
+		let CountOfColor=0
+		for (let i = 0; i < star.length; i++) {
+		  if(i%5==0){
+			CountOf5++
+		  }
+		  if(star[i].style.color=="var(--mainColor)"){
+			CountOfColor++;
+		  }
+		}
+		console.log(`count of stars has color: ${CountOfColor}`)
+		console.log(`count of group stars : ${CountOf5}`)
+
+		let average=CountOfColor/CountOf5;
+		console.log(`Average of ratings : ${average}`)
+		console.log(`##################################`)
+	  }
+	  CountAveRating()
+	</script>

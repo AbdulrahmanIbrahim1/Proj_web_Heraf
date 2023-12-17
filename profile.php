@@ -237,7 +237,30 @@ echo $emp1['about'] . "</p>";}
     <!-- end section 2 -->
     
     <!-- start comments -->
-	
+	<?php  if (isset($emp1['elherfa'])) {
+    echo "<div class=\"comments\">
+      <h2>Ratings : </h2>
+      <div class=\"container contComnt\">
+        
+         
+        <!-- ======== -->
+        <div class=\"card\">
+          <div class=\"person\">
+          <img src=\"images/skills-02.jpg\" alt=\"\">
+          <div class=\"name\">Omar Elsayed</div>
+          
+        </div>
+        <div class=\"cmnt\">
+          
+          
+          <p class=\"mycmnt\">COMMENT</p>
+          
+        </div>
+      </div>
+        <!-- ==== -->
+    </div>
+    
+  </div>";}?>
     <!-- script to add new comment -->
     <script>
       

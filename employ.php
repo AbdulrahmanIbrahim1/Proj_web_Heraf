@@ -33,7 +33,7 @@ include("code.php");
           <li><a href="index.php#sur">Survices</a></li>
           <li><a href="#about">About</a></li>
         </ul>
-        <a href="profile.php">
+        <a href="<?php if (session_status() == PHP_SESSION_NONE) {session_start();} if (isset($_SESSION['user'])){echo "profile.php";} else {echo "login.php";} ?>">
           <i class="fa-solid fa-user"></i>
         </a>
       </div>
@@ -47,8 +47,8 @@ include("code.php");
         <!-- part left => text -->
         <div class="left">
           <p>Hi there</p>
-          <h3><?php echo $emp1['first_name'] . " " . $emp1['last_name']; ?></h3>
-          <p><?php if (isset($emp1['elherfa'])) {echo $emp1['elherfa']; 
+          <h3><?php echo $emp2['first_name'] . " " . $emp2['last_name']; ?></h3>
+          <p><?php if (isset($emp2['elherfa'])) {echo $emp2['elherfa']; 
             echo "<ul>";
 			for ($i = 0; $i < sizeof($skil); $i++) {
 				echo "<li>" . $skil[$i]['skill'] . "</li>";
@@ -86,12 +86,12 @@ echo "</p>";}
               }
             </script>
             <br>
-			<?php if (isset($emp1['elherfa'])) {
+			<?php if (isset($emp2['elherfa'])) {
 			
-echo $emp1['about'] . "</p>";}
+echo $emp2['about'] . "</p>";}
 			?>
-            <p><span>My phone : </span><?php echo $emp1['phone'] ?></p>
-            <?php if (isset($emp1['elherfa'])) {
+            <p><span>My phone : </span><?php echo $emp2['phone'] ?></p>
+            <?php if (isset($emp2['elherfa'])) {
 			echo "<p>Total Reviews :</p>
             <i class=\"fa-solid fa-star one\"></i>
             <i class=\"fa-solid fa-star two\"></i>
@@ -103,14 +103,14 @@ echo $emp1['about'] . "</p>";}
         <!-- part right => photo -->
         <div class="right">
           <div class="photo">
-            <img src="images/<?php echo $emp1['photo'] ?>" alt="">
+            <img src="images/<?php echo $emp2['photo'] ?>" alt="">
           </div>
         </div>
       </div>
     </section>
     <!-- end section 1  -->
 
-	<?php if (isset($emp1['elherfa']) and sizeof($proj) > 0) {
+	<?php if (isset($emp2['elherfa']) and sizeof($proj) > 0) {
 		echo "<!-- start section 2 -->
 		<div class=\"projects\">";
 		echo "<h2>Some of my works :</h2>";
@@ -200,17 +200,39 @@ echo $emp1['about'] . "</p>";}
     <!-- end section 2 -->
     
     <!-- start comments -->
-	<?php if (isset($emp1['elherfa'])) {
+	<?php  for ($i=0; $i < sizeof($rev); $i++){
+		$client_id = $rev[$i]['client_id'];
+		$run = "SELECT * FROM clients WHERE id = $client_id";
+		$clie = $pdo->prepare($run);
+		$clie->execute();
+		$clie = $clie->fetch(PDO::FETCH_ASSOC);
+		// echo $clie['first_name'];
+    echo "<div class=\"comments\">";
+	if ($i == 0){echo "<h2>Ratings : </h2>";}
+      echo "<div class=\"container contComnt\">
+        <!-- ======== -->
+        <div class=\"card\">
+          <div class=\"person\">
+          <img src=\"images/" . $clie['photo'] . "\" alt=\"\">
+          <div class=\"name\">" . $clie['first_name'] . " " . $clie['last_name'] . "</div>
+        </div>
+        <div class=\"cmnt\">
+          <p class=\"mycmnt\">" . $rev[$i]['review'] . "</p>
+        </div>
+      </div>
+        <!-- ==== -->
+    </div>
+  </div>";}?>
+	<?php if (isset($emp2['elherfa']) and isset($emp1)) {
     echo "<div class=\"comments\">
-      <h2>Ratings : </h2>
       <div class=\"container contComnt\">
         
          
         <!-- ======== -->
         <div class=\"card\">
           <div class=\"person\">
-          <img src=\"images/skills-02.jpg\" alt=\"\">
-          <div class=\"name\">Omar Elsayed</div>
+          <img src=\"images/" . $emp1['photo'] . "\" alt=\"\">
+          <div class=\"name\">" . $emp1['first_name'] . " " . $emp1['last_name'] . "</div>
           
         </div>
         <div class=\"cmnt\">
@@ -260,12 +282,12 @@ echo $emp1['about'] . "</p>";}
           let person=document.createElement("div")
           person.className="person";
           let img=document.createElement("img");
-          img.src="images/skills-02.jpg"
+          img.src="images/<?php echo $emp1['photo'] ?>"
           img.alt="";
           // ناقص السورس هيبقي من الداتا بيز و الاسم 
           let name=document.createElement("div")
           name.className="name";
-          name.innerHTML="abdo"
+          name.innerHTML="<?php echo $emp1['first_name'] . " " . $emp1['last_name']?>"
           
           person.appendChild(img)
           person.appendChild(name)

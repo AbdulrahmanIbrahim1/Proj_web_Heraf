@@ -54,22 +54,88 @@
             <input type="file" name="photo" id="photo">
             
             <label for="governorate">Governorate </label>
-            <select name="governorate">
-                <option value="eg">Qalyubia</option>
-                <option value="uk">Cairo</option>
+            <select name="governorate" id="governorate">
+                <option value=""></option>
+                <option value="Cairo" >Cairo</option>
+                <option value="Alexandria">Alexandria</option>
+                <option value="Giza">Giza</option>
+                <option value="Luxor">Luxor</option>
+                <option value="Aswan">Aswan</option>
+                <option value="Qena">Qena</option>
+                <option value="Sohag">Sohag</option>
             </select>
             
             
             <label for="Country">Your Country : </label>
-            <select name="Country">
-                <optgroup label="Qalyubia">
-                    <option value="shoubra">shoubra</option>
-                    <option value="benha">benha</option>
-                <optgroup label="Cairo">
-                    <option value="shoubra-m">shoubra masr</option>
-                    <option value="October">6 October</option>
+            <select name="Country" id="Country">
+                    <option value=""></option>
+                <optgroup country="country" label="Cairo"style="display: none;">
+                    <option value="Maadi">Maadi</option>
+                    <option value="Zamalek">Zamalek</option>
+                    <option value="Heliopolis">Heliopolis</option>
+                    <option value="Nasr City">Nasr City</option>
+                    <option value="Mohandessin">Mohandessin</option>
+                <optgroup country="country"label="Alexandria"style="display:none;">
+                    <option value="Al-Montaza">Al-Montaza</option>
+                    <option value="Al-Ibrahimiyya">Al-Ibrahimiyya</option>
+                    <option value="Al-Laban">Al-Laban</option>
+                    <option value="Al-Gomrok">Al-Gomrok</option>
+                    <option value="Al-Wardian">Al-Wardian</option>
+                </optgroup>
+                <optgroup country="country"label="Giza"style="display: none;">
+                    <option value="6th of October City">6th of October City</option>
+                    <option value="Sheikh Zayed City">Sheikh Zayed City</option>
+                    <option value="Al-Haram">Al-Haram</option>
+                    <option value="Dokki">Dokki</option>
+                    <option value="Agouza">Agouza</option>
+                </optgroup>
+                <optgroup country="country" label="Luxor"style="display: none;">
+                    <option value="Luxor City">Luxor City</option>
+                    <option value="Al-Asasif">Al-Asasif</option>
+                    <option value="Karnak">Karnak</option>
+                    <option value="Al-Manshiya">Al-Manshiya</option>
+                    <option value="Al-Gorna">Al-Gorna</option>
+                </optgroup>
+                <optgroup country="country"label="Aswan"style="display: none;">
+                    <option value="Aswan City">Aswan City</option>
+                    <option value="Elephantine Island">Elephantine Island</option>
+                    <option value="New Kalabsha">New Kalabsha</option>
+                    <option value="Edfu">Edfu</option>
+                    <option value="Kom Ombo">Kom Ombo</option>
+                </optgroup>
+                <optgroup country="country" label="Qena" style="display: none;">
+                    <option value="Luxor City">Luxor City</option>
+                    <option value="Al-Asasif">Al-Asasif</option>
+                    <option value="Karnak">Karnak</option>
+                    <option value="Al-Manshiya">Al-Manshiya</option>
+                    <option value="Al-Gorna">Al-Gorna</option>
+                </optgroup>
+                <optgroup country="country" label="Sohag" style="display: none;">
+                    <option value="Sohag  City">Sohag City</option>
+                    <option value="Akhmim">Akhmim</option>
+                    <option value="Girga">Girga</option>
+                    <option value="Tahta">Tahta</option>
+                    <option value="Juhayna">Juhayna</option>
                 </optgroup>
             </select>
+            <!-- script for country -->
+            <script>
+                let gov = document.getElementById("governorate");
+                let country= document.getElementById("Country");
+                let groups = document.querySelectorAll('[country="country"]');
+                gov.onchange=()=>{
+                    for(let i=0;i<groups.length;i++){
+                        groups[i].value=" "
+                        groups[i].style.display="none";
+                    }
+                    for(let i=0;i<groups.length;i++){
+                        if(gov.value==groups[i].getAttribute("label")){
+                            groups[i].style.display="inline-block";
+                        }
+                    }
+                }
+            </script>
+			
 
             <label for="num">Your phone number</label>
             <input type="tel" name="" id="num" placeholder="01091532721" maxlength="11">

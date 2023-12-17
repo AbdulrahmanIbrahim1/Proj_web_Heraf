@@ -83,10 +83,13 @@
       <p>A platform to help you find a suitable craftsman</p>
       <div class="search">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="search" class="center"
-          placeholder="   electrician ,Computer engineer ,Mechanical ,carpenter,Broker,............................................ ">
-        <button BtnSearch>Search</button>
-      </div>
+        
+      
+	  <form action="search.php" method="post">
+			<input type="search" class="center" name="name" placeholder="   electrician ,Computer engineer ,Mechanical ,carpenter,Broker,............................................ ">
+			<button type="submit">Search</button>
+		</form>
+		</div>
     </div>
   </section>
   <script>
