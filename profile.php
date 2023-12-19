@@ -72,11 +72,11 @@ echo "</p>";}
             echo "<button class=\"btn-skill\">
               Add skill 
             </button>
-            <div class=\"Newskill\" style=\"display: none;\">
+            <form class=\"Newskill\" style=\"display: none;\" action=\"\" method=\"post\">
               <label for=\"Nskill\"  >Write your skill : </label>
-              <input type=\"text\" name=\"Nskill\" id=\"Nskill\" class=\"Nskill\"  >
-              <button add=\"add\">Add</button>
-            </div>";}?>
+              <input type=\"text\" id=\"Nskill\" class=\"Nskill\" name=\"addskill\">
+              <input type=\"submit\" name=\"\" id=\"\" value=\"Add\" add=\"add\">
+            </form>";}?>
             <!-- script to add new skill -->
             <script>
               let btnSkill=document.getElementsByClassName("btn-skill")[0]
@@ -107,7 +107,7 @@ echo "</p>";}
             <br>
 			<?php if (isset($emp1['elherfa'])) {
 			
-echo $emp1['about'] . "</p>";}
+echo "<p>" . $emp1['about'] . "</p>";}
 			?>
             <p><span>My phone : </span><?php echo $emp1['phone'] ?></p>
             <?php if (isset($emp1['elherfa'])) {
@@ -119,6 +119,7 @@ echo $emp1['about'] . "</p>";}
             <i class=\"fa-solid fa-star five\"></i>
           </div>"
 		  ;}?>
+		  <?php if(!isset($emp1['elherfa'])){echo "</div>";}?>
         <!-- part right => photo -->
         <div class="right">
           <div class="photo">
@@ -154,9 +155,9 @@ echo $emp1['about'] . "</p>";}
 
 		<?php if (isset($emp1['elherfa'])) {
         echo "<div class=\"lay addlay\"></div>
-        <form class=\"addForm\">
+        <form class=\"addForm\" action=\"\" method=\"post\" enctype=\"multipart/form-data\">
           <label for=\"photoProj\">image of new project : </label>
-          <input type=\"file\" name=\"photoProj\" required>
+          <input type=\"file\" name=\"photoProj\" accept=\"image/*\" required>
 
           <label for=\"projName\">Name of your new project : </label>
           <input type=\"text\" name=\"projName\" required>
@@ -191,76 +192,41 @@ echo $emp1['about'] . "</p>";}
         addform.style.display="grid";
       }
 
-      lay.onclick = ()=>{
-        lay.style.display = "none";
-        addform.style.display = "none";
-//new skill
-        Newskill.style.display = "none"
-      }
       
-      addform.onsubmit= (e)=>{
-        e.preventDefault();
-        lay.style.display = "none";
-        addform.style.display = "none";
-        //create new card
-        let card = document.createElement("div")
-        card.className="card";
-        //create left
-        let left =document.createElement("div")
-        let imgProj = document.createElement("div")
-        imgProj.className="img-proj";
-        let img = document.createElement("img")
-        img.src=projImge.value;
-        //append left
-        imgProj.appendChild(img);
-        left.appendChild(imgProj);
-        card.appendChild(left)
-
-        //create right
-        let right = document.createElement("div")
-        right.className="right";
-        //create h4
-        let h4=document.createElement("h4");
-        h4.innerHTML= projName.value;
-        //create p
-        let p=document.createElement("p");
-        p.innerHTML=projInfo.value;
-        //append right
-        right.appendChild(h4)
-        right.appendChild(p)
-        card.appendChild(right)
-        //add to container to page
-        projects.lastElementChild.prepend(card);
-      }
 
     </script>
     <!-- end section 2 -->
     
     <!-- start comments -->
 	<?php  if (isset($emp1['elherfa'])) {
-    echo "<div class=\"comments\">
-      <h2>Ratings : </h2>
-      <div class=\"container contComnt\">
-        
-         
+    for ($i=0; $i < sizeof($rev); $i++){
+		$client_id = $rev[$i]['client_id'];
+		$run = "SELECT * FROM clients WHERE id = $client_id";
+		$clie = $pdo->prepare($run);
+		$clie->execute();
+		$clie = $clie->fetch(PDO::FETCH_ASSOC);
+		// echo $clie['first_name'];
+    echo "<div class=\"comments\">";
+	if ($i == 0){echo "<h2>Ratings : </h2>";}
+      echo "<div class=\"container contComnt\">
         <!-- ======== -->
         <div class=\"card\">
           <div class=\"person\">
-          <img src=\"images/skills-02.jpg\" alt=\"\">
-          <div class=\"name\">Omar Elsayed</div>
-          
+          <img src=\"images/" . $clie['photo'] . "\" alt=\"\">
+          <div class=\"name\">" . $clie['first_name'] . " " . $clie['last_name'] . "</div>
         </div>
         <div class=\"cmnt\">
-          
-          
-          <p class=\"mycmnt\">COMMENT</p>
-          
+		<i class=\"fa-solid fa-star one\"></i>
+            <i class=\"fa-solid fa-star two\"></i>
+            <i class=\"fa-solid fa-star three\"></i>
+            <i class=\"fa-solid fa-star four\"></i>
+            <i class=\"fa-solid fa-star five\"></i>
+          <p class=\"mycmnt\">" . $rev[$i]['review'] . "</p>
         </div>
       </div>
         <!-- ==== -->
     </div>
-    
-  </div>";}?>
+  </div>";}}?>
     <!-- script to add new comment -->
     <script>
       

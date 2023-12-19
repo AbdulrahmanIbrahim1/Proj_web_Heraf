@@ -84,7 +84,7 @@ unset($_SESSION['user']);
     let btn = document.getElementsByTagName("button")[0]
     //console.log(btn)
     btn.onclick = function () {
-      location.href = "newacount.html"
+      location.href = "newacount.php"
     }
 
   </script>

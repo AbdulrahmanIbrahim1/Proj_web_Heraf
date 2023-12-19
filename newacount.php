@@ -1,3 +1,4 @@
+<?php include("code.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,11 +25,11 @@
             <i class="fas fa-bars toggle-menu"></i>
             <div class="links">
                 <ul>
-        <li><a href="index.html">Home</a></li>
-                    <li><a href="#sur">Survices</a></li>
-                    <li><a href="#about">About</a></li>
+        <li><a href="index.php">Home</a></li>
+                    <li><a href="index.php#sur">Survices</a></li>
+                    <li><a href="index.php#about">About</a></li>
                 </ul>
-                <a href="login.html">
+                <a href="login.php">
                     <i class="fa-solid fa-user"></i>
                 </a>
             </div>
@@ -42,16 +43,16 @@
 
     <div class="main-box center">
         <h2>Create new acount </h2>
-        <form action="">
+        <form action="" method="post" enctype="multipart/form-data">
 
             <label for="fname">First name : </label>
-            <input type="text" id="fname" placeholder="Enter First Name" maxlength="15" autofocus required oninvalid="this.setCustomValidity('error')" oninput="setCustomValidity('')">
+            <input name="first_name"  type="text" id="fname" placeholder="Enter First Name" maxlength="15" autofocus required oninvalid="this.setCustomValidity('error')" oninput="setCustomValidity('')">
             
             <label for="lname">Last name : </label>
-            <input type="text" id="lname" placeholder="Enter Last Name" maxlength="15" required >
+            <input name="last_name" type="text" id="lname" placeholder="Enter Last Name" maxlength="15" required >
             
             <label for="photo">Your Profile Photo : </label>
-            <input type="file" name="photo" id="photo">
+            <input type="file" name="photo" id="photo" accept="image/*">
             
             <label for="governorate">Governorate </label>
             <select name="governorate" id="governorate">
@@ -138,7 +139,7 @@
 			
 
             <label for="num">Your phone number</label>
-            <input type="tel" name="" id="num" placeholder="01091532721" maxlength="11">
+            <input type="tel" name="phone" id="num" placeholder="01091532721" maxlength="11">
             
             <label for="ifemp">Are you an employee?</label>
             <select name="ifemp" id="ifemp" required    >
@@ -185,10 +186,10 @@
 
 
             <label for="Email">Email : </label>
-            <input type="text" id="Email" placeholder="yourmail@gmail.com" maxlength="25" required>
+            <input name="email" type="text" id="Email" placeholder="yourmail@gmail.com" maxlength="25" required>
             
             <label for="pass">pass : </label>
-            <input type="pass" id="pass" placeholder="assd#dwss_10@dw40" maxlength="25"  minlength="5" required>
+            <input name="pass_word" type="pass" id="pass" placeholder="assd#dwss_10@dw40" maxlength="25"  minlength="5" required>
             
             <label for="cpass">Confirm pass : </label>
             <input type="pass" id="cpass" placeholder="assd#dwss_10@dw40" maxlength="25" minlength="5"required >

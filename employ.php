@@ -93,11 +93,11 @@ echo $emp2['about'] . "</p>";}
             <p><span>My phone : </span><?php echo $emp2['phone'] ?></p>
             <?php if (isset($emp2['elherfa'])) {
 			echo "<p>Total Reviews :</p>
-            <i class=\"fa-solid fa-star one\"></i>
-            <i class=\"fa-solid fa-star two\"></i>
-            <i class=\"fa-solid fa-star three\"></i>
-            <i class=\"fa-solid fa-star four\"></i>
-            <i class=\"fa-solid fa-star five\"></i>
+            <i class=\"fa-solid fa-star one total-rate\"></i>
+            <i class=\"fa-solid fa-star two total-rate\"></i>
+            <i class=\"fa-solid fa-star three total-rate\"></i>
+            <i class=\"fa-solid fa-star four total-rate\"></i>
+            <i class=\"fa-solid fa-star five total-rate\"></i>
           </div>"
 		  ;}?>
         <!-- part right => photo -->
@@ -217,13 +217,18 @@ echo $emp2['about'] . "</p>";}
           <div class=\"name\">" . $clie['first_name'] . " " . $clie['last_name'] . "</div>
         </div>
         <div class=\"cmnt\">
+		<i class=\"fa-solid fa-star one\"></i>
+            <i class=\"fa-solid fa-star two\"></i>
+            <i class=\"fa-solid fa-star three\"></i>
+            <i class=\"fa-solid fa-star four\"></i>
+            <i class=\"fa-solid fa-star five\"></i>
           <p class=\"mycmnt\">" . $rev[$i]['review'] . "</p>
         </div>
       </div>
         <!-- ==== -->
     </div>
   </div>";}?>
-	<?php if (isset($emp2['elherfa']) and isset($emp1)) {
+	<?php if (isset($emp2['elherfa']) and isset($emp1) and !isset($emp1['elherfa'])) {
     echo "<div class=\"comments\">
       <div class=\"container contComnt\">
         
@@ -236,8 +241,10 @@ echo $emp2['about'] . "</p>";}
           
         </div>
         <div class=\"cmnt\">
-          <textarea cols=\"30\" rows=\"10\" placeholder=\"Write your comment here\" style=\"min-width: 260px; height: 66px;\"></textarea>
-          <button class=\"addcmnt\">add comment</button>
+		<form action=\"\" method=\"POST\">
+              <input type=\"text\" name=\"comment\" placeholder=\"Write your comment here\">
+              <input type=\"submit\" class=\"addcmnt\" name=\"\" id=\"\" value=\"add comment\" add=\"add\">
+        </form>
           <div class=\"rating not\">
             <i class=\"fa-solid fa-star star\" onclick=\"rate(1)\" onmouseover=\"highlight(1)\" onmouseout=\"resetStars()\"></i>
             <i class=\"fa-solid fa-star star\" onclick=\"rate(2)\" onmouseover=\"highlight(2)\" onmouseout=\"resetStars()\"></i>
@@ -257,6 +264,7 @@ echo $emp2['about'] . "</p>";}
     </div>
   </div>";}?>
     <!-- script to add new comment -->
+    <!-- script to add new comment -->
     <script>
       
       let cmnt = document.querySelector('[placeholder="Write your comment here"]');
@@ -271,6 +279,7 @@ echo $emp2['about'] . "</p>";}
       //for ratings
       removeNot()
       removeAtrr()
+      puttotalrate()
     }
     //=============
       let comments = document.querySelector('[class="container contComnt"]')
@@ -282,12 +291,12 @@ echo $emp2['about'] . "</p>";}
           let person=document.createElement("div")
           person.className="person";
           let img=document.createElement("img");
-          img.src="images/<?php echo $emp1['photo'] ?>"
+          img.src="images/skills-02.jpg"
           img.alt="";
           // ناقص السورس هيبقي من الداتا بيز و الاسم 
           let name=document.createElement("div")
           name.className="name";
-          name.innerHTML="<?php echo $emp1['first_name'] . " " . $emp1['last_name']?>"
+          name.innerHTML="abdo"
           
           person.appendChild(img)
           person.appendChild(name)
@@ -337,11 +346,15 @@ echo $emp2['about'] . "</p>";}
             textarea.style.display="none"
             btn.style.display="none"
             //
+            
             removeNot()
             removeAtrr()
             CountAveRating()
+            puttotalrate()
           }
           CountAveRating()
+          puttotalrate()
+
         }
         //========
         //script for ratings
@@ -408,8 +421,24 @@ echo $emp2['about'] . "</p>";}
           let average=CountOfColor/CountOf5;
           console.log(`Average of ratings : ${average}`)
           console.log(`##################################`)
+          return average;
+
         }
         CountAveRating()
+        
+        function puttotalrate(){
+          let totalrate =CountAveRating();
+          let starsRate=document.querySelectorAll(".total-rate");
+          for(let i=0;i<starsRate.length;i++){
+            starsRate[i].style.color="var(--mainColor)";
+          }
+          let NewtotalRate=Math.round(totalrate);
+          console.log(`New Total Rate = ${NewtotalRate}`)
+          for(let i=0;i<NewtotalRate;i++){
+            starsRate[i].style.color="greenyellow"
+          }
+        }
+        puttotalrate()
       </script>
       <!-- end comments -->
       

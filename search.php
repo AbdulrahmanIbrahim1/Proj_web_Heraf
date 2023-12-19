@@ -64,9 +64,10 @@
       <p>A platform to help you find a suitable craftsman</p>
       <div class="search">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="search" class="center"
-          placeholder="   electrician ,Computer engineer ,Mechanical ,carpenter,Broker,............................................ ">
-        <button>Search</button>
+        <form action="search.php" method="post">
+			<input type="search" class="center" name="name" placeholder="   electrician ,Computer engineer ,Mechanical ,carpenter,Broker,............................................ ">
+			<button type="submit">Search</button>
+		</form>
       </div>
     </div>
   </section>
@@ -77,7 +78,7 @@
       <!-- card of account -->
       <?php
 	  for ($i = 0; $i < sizeof($heraf); $i++) {
-		if ( isset($emp1) and $heraf[$i]['id'] == $emp1['id']) {
+		if ( isset($emp1) and $heraf[$i]['id'] == $emp1['id'] and isset($emp1['elherfa'])) {
 			continue;
 		}
 	  echo "<div class=\"Card-acount\" index=$i>
