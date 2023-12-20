@@ -235,6 +235,7 @@ header+section .content .search button {
   background-color: var(--mainColor);
   cursor: pointer;
 }
+
 header+section .content .search button:hover {
   background-color: var(--subColor);
 }
@@ -253,8 +254,6 @@ header+section .content .search button {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-
-.section2 .container {}
 
 .section2 .container .Card-acount {
   display: grid;
@@ -296,10 +295,12 @@ header+section .content .search button {
   line-height: 1.5;
 }
 
-.Card-acount +hr{
+.Card-acount+hr {
   border: 2px solid #eee;
-    width: 95%;
+  width: 95%;
 }
+
+
 /* end section 2 */
 
 /* start footer */

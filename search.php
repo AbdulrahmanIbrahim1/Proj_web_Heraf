@@ -1,4 +1,4 @@
-<?php include("code.php"); ?>
+<?php include("codesearch.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,16 +17,16 @@
   <style>
 	.Card-acount {
 		position: relative;
-	}
+	} 
 	.button {
 		width: 100%;
 		height: 100%;
 		background-color: transparent;
-		/* border: none; */
 		border-radius: 30px;
 		position: absolute;
 		top: 0;
 		left: 0;
+    cursor: pointer;
 	}
   </style>
 </head>
@@ -136,50 +136,5 @@
       </div>
     </footer>
     <!-- end footer  -->
-
 </body>
-
-  <!-- script for click on fas fa-bars toggle-menu in phone screen  -->
-  <script>
-    let BtnList = document.getElementsByClassName("fas fa-bars toggle-menu")[0]
-    let links = document.querySelector('[class="links"]')
-
-
-    window.addEventListener("resize", function () {
-      if (window.innerHeight <= 768) {
-        links.style.display = "none"
-        BtnList.onclick = () => {
-          links.style.cssText = "display: flex; flex-direction: column; position:absolute; top:100%; left:0; width: 100%;background-color: #00000075; "
-        }
-        links.onmouseleave = () => {
-          links.style.display = "none"
-        }
-      }
-      if (window.innerWidth > 768) {
-        links.style.cssText = "display: flex; position: relative; "
-        links.onmouseleave = () => {
-          links.style.display = "display: flex; position: relative; "
-        }
-      }
-    })
-	//onclick on account 
-    // let account = document.querySelectorAll('[class="Card-acount"]')
-    //   for(let i=0;account.length;i++){
-    //     account[i].onclick=()=>{
-	// 		// fetch("employ.php", {
-	// 		// 	"method": "POST",
-	// 		// 	"headers": {
-	// 		// 		"Content-Type": "application/x-www-form-urlencoded"
-	// 		// 	},
-	// 		// 	"body": 'number=' + encodeURIComponent(account[i].getAttribute('index'))
-	// 		// }).then(function(response){
-	// 		// 	return response.text();
-	// 		// }).then(function(data){
-	// 		// 	console.log(parseInt(data.match(/\d+/)[0], 10));
-	// 		// })
-    //     window.location.href="employ.php";
-	// 	// console.log(account[i].getAttribute('index'));
-    //   }
-    // }
-  </script>
 </html>

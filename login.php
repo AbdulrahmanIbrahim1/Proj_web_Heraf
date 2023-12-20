@@ -1,6 +1,7 @@
 <?php
 session_start();
 unset($_SESSION['user']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,19 +28,13 @@ unset($_SESSION['user']);
       </div>
       <div class="text center">
         <h1>Login To Your Account</h1>
-        <p>Login using social networks</p>
-        <div class="links">
-          <div class="face"><a href="#"><i class="fa-brands fa-facebook-f"></i> </a></div>
-          <div class="google active"><a href="#"><i class="fa-brands fa-google-plus-g"></i></a></div>
-          <div class="linked"><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></div>
-        </div>
+        <?php include("codelogin.php"); ?>  
       </div>
       <form action="" method="post">
         <input type="email" id="email" placeholder="Email" required
           title="Enter your Email EXample : Heraf123@gmail.com" name="email"><br>
         <input type="password" id="pass" placeholder="Password" required title="Enter your password" name="password"><br>
         <input type="submit" id="sub" value="Sign In" >
-		<?php include("code.php"); ?>
         <i class="fa-solid fa-eye" style="cursor:pointer;"></i>
       </form>
     </div>
@@ -56,39 +51,9 @@ unset($_SESSION['user']);
   </div>
 
   <!-- start Java Script -->
-  <script>
-    //start to show pass
-    let pass = document.getElementById("pass");
-    let iconShow = document.getElementsByClassName("fa-solid fa-eye")[0]
-    iconShow.onclick = () => {
-      if (pass.type === "password") {
-        pass.type = "text";
-        setTimeout(() => { pass.type = "password" }, 3000)
-      }
-      else {
-        pass.type = "password";
-      }
-    }
-    //end to show pass
- //   let form = document.getElementsByTagName("form")[0];
-   // console.log(form)
-    //form.onsubmit = function() {
-    //  location.href = "profile.html";
-   // }
-
-    //   let sub = document.querySelector('[type="submit"]')
-    //   sub.onclick= ()=>{
-    //     location.href="profile.html"
-    //   }
-
-    let btn = document.getElementsByTagName("button")[0]
-    //console.log(btn)
-    btn.onclick = function () {
-      location.href = "newacount.php"
-    }
-
-  </script>
+  
   <!-- End Java Script -->
+  <script src="JSFILES/login.js"></script>
 </body>
 
 </html>

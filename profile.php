@@ -1,15 +1,12 @@
 <?php
-include("code.php");
+include("codeprof.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="icon" type="image/x-icon" href="images/IMG_20231105_202217_434-removebg.png">
-
-
     <link rel="stylesheet" href="CSSFiles/Normalize.css" />
     <!-- Font Awesome Library -->
     <link rel="stylesheet" href="CSSFiles/all.min.css" />
@@ -33,20 +30,9 @@ include("code.php");
           <li><a href="index.php#sur">Survices</a></li>
           <li><a href="#about">About</a></li>
         </ul>
-        <a href="#" id="loginLink">
+        <a href="login.php" id="loginLink">
 		    <i class="fa-solid fa-right-from-bracket"></i>
 		</a>
-
-		<script>
-    // Function to open login.php
-    function openLoginPage() {
-        window.location.href = 'login.php';
-    }
-
-    // Attach the function to the click event of the link
-    document.getElementById('loginLink').addEventListener('click', openLoginPage);
-</script>
-
       </div>
     </div>
   </header>
@@ -77,33 +63,7 @@ echo "</p>";}
               <input type=\"text\" id=\"Nskill\" class=\"Nskill\" name=\"addskill\">
               <input type=\"submit\" name=\"\" id=\"\" value=\"Add\" add=\"add\">
             </form>";}?>
-            <!-- script to add new skill -->
-            <script>
-              let btnSkill=document.getElementsByClassName("btn-skill")[0]
-              let Newskill=document.querySelector('[class="Newskill"]')
-              console.log(Newskill)
-              btnSkill.onclick=()=>{
-                lay.style.display="block";
-                Newskill.style.display="block"
-              }
-              let btnAddSkill = document.querySelector('[add="add"]')
-              let inputSkill=document.querySelector('[id="Nskill"]')
-              btnAddSkill.onclick= ()=>{
-                if(!inputSkill.value==""){
-                  let ul = document.querySelector('[class="ulSkill"]')
-                  let liValue=document.createElement("li")
-                  liValue.innerHTML=inputSkill.value
-                  ul.appendChild(liValue)
-                  lay.style.display="none";
-                  Newskill.style.display="none"
-                }
-                else{
-                  //window.alert("add skill")
-                  lay.style.display="none";
-                  Newskill.style.display="none"
-                }
-              }
-            </script>
+            
             <br>
 			<?php if (isset($emp1['elherfa'])) {
 			
@@ -151,8 +111,7 @@ echo "<p>" . $emp1['about'] . "</p>";}
 				</div>
 			  </div>";}?>
         <!-- end card -->
-
-
+        <!--form to add project -->
 		<?php if (isset($emp1['elherfa'])) {
         echo "<div class=\"lay addlay\"></div>
         <form class=\"addForm\" action=\"\" method=\"post\" enctype=\"multipart/form-data\">
@@ -172,216 +131,46 @@ echo "<p>" . $emp1['about'] . "</p>";}
           <p>Add new project</p>
           <i class=\"fa-solid fa-plus\"></i>
         </div>";}?>
-
-        
       </div>
     </div>
-    <!-- script to add new project -->
-    <script>
-      let projects = document.getElementsByClassName("projects")[0];
-      let addform =document.getElementsByClassName("addForm")[0];
-      let lay = document.getElementsByClassName("addlay")[0];
-      let projImge = document.querySelector('[name="photoProj"]');
-      let projName= document.querySelector('[name="projName"]');
-      let projInfo = document.querySelector('[name="infoproj"]');
-      let sub = document.querySelector('[class="sub"]');
-
-      let add= document.getElementsByClassName("fa-plus")[0];
-      add.onclick = function(){
-        lay.style.display ="block";
-        addform.style.display="grid";
-      }
-
-      
-
-    </script>
     <!-- end section 2 -->
     
     <!-- start comments -->
-	<?php  if (isset($emp1['elherfa'])) {
-    for ($i=0; $i < sizeof($rev); $i++){
+<!-- start comments -->
+	<?php if (isset($emp1['elherfa'])) { 
+	echo "<div class=\"comments\"> <div class=\"container contComnt\">";
+  
+	for ($i=0; $i < sizeof($rev); $i++){
 		$client_id = $rev[$i]['client_id'];
 		$run = "SELECT * FROM clients WHERE id = $client_id";
 		$clie = $pdo->prepare($run);
 		$clie->execute();
 		$clie = $clie->fetch(PDO::FETCH_ASSOC);
-		// echo $clie['first_name'];
-    echo "<div class=\"comments\">";
+    
 	if ($i == 0){echo "<h2>Ratings : </h2>";}
-      echo "<div class=\"container contComnt\">
+      echo "
         <!-- ======== -->
-        <div class=\"card\">
-          <div class=\"person\">
-          <img src=\"images/" . $clie['photo'] . "\" alt=\"\">
-          <div class=\"name\">" . $clie['first_name'] . " " . $clie['last_name'] . "</div>
-        </div>
-        <div class=\"cmnt\">
-		<i class=\"fa-solid fa-star one\"></i>
-            <i class=\"fa-solid fa-star two\"></i>
-            <i class=\"fa-solid fa-star three\"></i>
-            <i class=\"fa-solid fa-star four\"></i>
-            <i class=\"fa-solid fa-star five\"></i>
-          <p class=\"mycmnt\">" . $rev[$i]['review'] . "</p>
-        </div>
+        <div class=\"card fornum\">
+			    <div class=\"person\">
+				    <img src=\"images/" . $clie['photo'] . "\" alt=\"\">
+				    <div class=\"name\">" . $clie['first_name'] . " " . $clie['last_name'] . "</div>
+			    </div>
+          <div class=\"cmnt\">
+            <div class=\"rating\">
+              <i class=\"fa-solid fa-star star \"></i>
+              <i class=\"fa-solid fa-star star \"></i>
+              <i class=\"fa-solid fa-star star \"></i>
+              <i class=\"fa-solid fa-star star \"></i>
+              <i class=\"fa-solid fa-star star  \"></i>
+            </div>
+				<p class=\"mycmnt\">" . $rev[$i]['review'] . "</p>
+        <span class=\"numOfRateFromDB\" style=\"display:none\"> ". $rev[$i]['rate'] . "</span>
+			</div>
       </div>
         <!-- ==== -->
+    ";}}?>
     </div>
-  </div>";}}?>
-    <!-- script to add new comment -->
-    <script>
-      
-      let cmnt = document.querySelector('[placeholder="Write your comment here"]');
-      let subcmnt = document.querySelector('[class="addcmnt"]');
-      subcmnt.onclick = comment;
-      
-      function comment() {
-        let mycmnt = document.querySelector('[class="mycmnt"]')
-      mycmnt.innerHTML = cmnt.value;
-      cmnt.style.display = "none"
-      subcmnt.style.display = "none"
-      //for ratings
-      removeNot()
-      removeAtrr()
-    }
-    //=============
-      let comments = document.querySelector('[class="container contComnt"]')
-
-        let addnew= document.querySelector('[class="fa-solid fa-plus addmycmnt"]');
-        addnew.onclick=()=>{
-          let card =document.createElement("div")
-          card.className="card";
-          let person=document.createElement("div")
-          person.className="person";
-          let img=document.createElement("img");
-          img.src="images/skills-02.jpg"
-          img.alt="";
-          // ناقص السورس هيبقي من الداتا بيز و الاسم 
-          let name=document.createElement("div")
-          name.className="name";
-          name.innerHTML="abdo"
-          
-          person.appendChild(img)
-          person.appendChild(name)
-          card.appendChild(person)
-          
-          let com=document.createElement("div")
-          com.className="cmnt";
-          let textarea=document.createElement("textarea")
-          textarea.cols="30"
-          textarea.rows = "10"
-          textarea.placeholder="Write your comment here"
-          textarea.style = "min-width: 260px height: 66px;";
-          let btn=document.createElement("button");
-          btn.className="addcmnt";
-          btn.innerHTML="add comment";
-          let p= document.createElement("p");
-          p.className="mycmnt";
-
-          let NewDivRate=document.createElement("div")
-          NewDivRate.className="rating not"
-          let NewStar=[];
-          for(let i=0 ;i<5;i++){
-            NewStar[i]=document.createElement("i");
-            NewStar[i].className="fa-solid fa-star star";
-            NewStar[i].setAttribute("onclick", `rate(${i+1})`)
-            NewStar[i].setAttribute("onmouseover", `highlight(${i+1})`)
-            NewStar[i].setAttribute("onmouseout", "resetStars()")
-          }
-          
-          for(let i=0;i<5;i++){
-            NewDivRate.appendChild(NewStar[i]);
-          }
-
-
-          com.appendChild(textarea);
-          com.appendChild(btn);
-          com.appendChild(NewDivRate)
-          com.appendChild(p);
-          
-          card.appendChild(com)
-          
-          comments.append(card)
-          
-          
-          btn.onclick= function(){
-            p.innerHTML=textarea.value
-            textarea.style.display="none"
-            btn.style.display="none"
-            //
-            removeNot()
-            removeAtrr()
-            CountAveRating()
-          }
-          CountAveRating()
-        }
-        //========
-        //script for ratings
-        let rats=document.querySelector('[class="rating not"]')
-        
-        let selectedRating = 0;
-
-        function highlight(starNumber) {
-          for (let i = 1; i <= starNumber; i++) {
-            document.querySelector(`.rating.not .star:nth-child(${i})`).style.color = 'red';
-              }
-        }
-
-        function resetStars() {
-          for (let i = 1; i <= 5; i++) {
-            document.querySelector(`.rating.not .star:nth-child(${i})`).style.color = (i <= selectedRating) ? 'var(--mainColor)' : 'black';
-          }
-        }
-
-        function rate(rating) {
-          selectedRating = rating;
-          resetStars();
-          console.log(`Rated: ${rating} stars`);
-
-        }
-
-        function removeAtrr(){
-          let star = document.querySelectorAll(".star")
-          for(let i=0;i<star.length;i++){
-            if(!star[i].parentElement.classList.contains("not")){
-            star[i].removeAttribute("onclick")
-            star[i].removeAttribute("onmouseover");
-            star[i].removeAttribute("onmouseout");
-          }
-        }
-      }
-        removeAtrr() 
-
-        function removeNot(){
-          let star = document.querySelectorAll(".star")
-          for (let i = 0; i < star.length; i++) {
-            if (star[i].parentElement.classList.contains("not")) {
-              star[i].parentElement.classList.remove("not")
-            }
-          }
-        }
-
-
-        function CountAveRating(){
-          let star = document.querySelectorAll(".star")
-          let CountOf5 = 0
-          let CountOfColor=0
-          for (let i = 0; i < star.length; i++) {
-            if(i%5==0){
-              CountOf5++
-            }
-            if(star[i].style.color=="var(--mainColor)"){
-              CountOfColor++;
-            }
-          }
-          console.log(`count of stars has color: ${CountOfColor}`)
-          console.log(`count of group stars : ${CountOf5}`)
-
-          let average=CountOfColor/CountOf5;
-          console.log(`Average of ratings : ${average}`)
-          console.log(`##################################`)
-        }
-        CountAveRating()
-      </script>
+  </div>
       <!-- end comments -->
       
       <!-- start footer  -->
@@ -420,29 +209,6 @@ echo "<p>" . $emp1['about'] . "</p>";}
         </div>
       </footer>
       <!-- end footer  -->
+      <script src="JSFILES/prof.js"></script>
   </body>
-  <!-- script for click on fas fa-bars toggle-menu in phone screen  -->
-  <script>
-    let BtnList = document.getElementsByClassName("fas fa-bars toggle-menu")[0]
-    let links = document.querySelector('[class="links"]')
-
-
-    window.addEventListener("resize" ,function(){
-    if(window.innerHeight<=768){
-      links.style.display = "none"
-      BtnList.onclick = () => {
-        links.style.cssText = "display: flex; flex-direction: column; position:absolute; top:100%; left:0; width: 100%;background-color: #00000075; "
-      }
-      links.onmouseleave = () => {
-        links.style.display = "none"
-      }
-    }
-    if(window.innerWidth>768){
-      links.style.cssText ="display: flex; position: relative; "
-      links.onmouseleave = () => {
-        links.style.display = "display: flex; position: relative; "
-      }
-    }
-  })
-  </script> 
   </html>

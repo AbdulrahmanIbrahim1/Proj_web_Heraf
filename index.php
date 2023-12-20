@@ -11,41 +11,10 @@
   <!-- Font Awesome Library -->
   <link rel="stylesheet" href="CSSFiles/all.min.css" />
   <!-- Main Template CSS File (stylesheet) -->
-  <link rel="stylesheet" href="CSSFiles/home.css">
+  <link rel="stylesheet" href="CSSFiles/index.css">
   <title>Heraf</title>
   <style>
-    /* Apply CSS to hide the input field */
-    #inputData {
-      display: none;
-    }
 
-	.button {
-      background-size: cover; /* Ensure the background image covers the entire button */
-      background-position: center; /* Center the background image */
-      background-repeat: no-repeat; /* Do not repeat the background image */
-      border: none; /* Remove the default button border */
-      color: white; /* Text color */
-      padding: 15px 30px; /* Padding for better appearance */
-      font-size: 16px; /* Font size */
-      cursor: pointer; /* Add a pointer cursor on hover */
-      outline: none; /* Remove the default focus outline */
-      border-radius: 10px; /* Add some border-radius for rounded corners */
-      transition: background-color 0.3s , transform 0.3s; /* Add a smooth transition for background color */
-
-      /* Optional: Add some box-shadow for a nice lift effect */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	  min-width: 100%;
-	  min-height: 250px;
-    }
-
-    /* Change the background color on hover for a nice effect */
-    .button:hover {
-      background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent black overlay on hover */
-	  transform: scale(1.1, 1.1);
-	  filter: grayscale(50%);
-	  opacity: 0.5;
-	  transition: 1s;
-    }
   </style>
 
 </head>
@@ -92,13 +61,6 @@
 		</div>
     </div>
   </section>
-  <script>
-    let BtnSearch = document.querySelector('[BtnSearch]')
-    console.log(BtnSearch)
-    BtnSearch.onclick = () => {
-      window.location.href = "search.php"
-    }
-  </script>
   <!-- end section 1  -->
 
   <!-- start section 2 -->
@@ -218,41 +180,4 @@
   </footer>
   <!-- end footer  -->
 </body>
-
-<!-- script for click on fas fa-bars toggle-menu in phone screen  -->
-<!-- script for click on fas fa-bars toggle-menu in phone screen  -->
-<script>
-  let BtnList = document.getElementsByClassName("fas fa-bars toggle-menu")[0]
-  let links = document.querySelector('[class="links"]')
-
-
-  window.addEventListener("resize", function () {
-    if (window.innerHeight <= 768) {
-      links.style.display = "none"
-      BtnList.onclick = () => {
-        links.style.cssText = "display: flex; flex-direction: column; position:absolute; top:100%; left:0; width: 100%;background-color: #00000075; "
-      }
-      links.onmouseleave = () => {
-        links.style.display = "none"
-      }
-    }
-    if (window.innerWidth > 768) {
-      links.style.cssText = "display: flex; position: relative; "
-      links.onmouseleave = () => {
-        links.style.display = "display: flex; position: relative; "
-      }
-    }
-  })
-
-  //click on card of job
-  let card=document.querySelectorAll('[jobs="jobs"]')
-for (let i = 0; i < card.length; i++) {
-  card[i].onclick=()=>{
-    console.log(card[i].name);
-    window.location.href="search.php"}
-  }
-
-
-</script>
-
 </html>
